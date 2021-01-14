@@ -1,0 +1,44 @@
+<html>
+<body>
+	<div id='background' style="width: 900px; height: 750px; background-image: url('img/white_bg.jpg');">
+        <div id='character' style='position:absolute; top:150px; left:150px; background-image: url("img/down1.png"); width:59px; height:86px;'></div>
+    </div>
+    <script type="text/javascript">
+		var leftValue = 450, topValue = 100;
+		let walkValue = 1;
+		let position = "";
+
+    	function update(){
+    		document.getElementById("character").style.left = leftValue+"px";
+    		document.getElementById("character").style.top = topValue+"px";
+		}
+		function animate(walkValue){
+			document.getElementById("character").style.backgroundImage = "url('img/"+position+walkValue+".png')";
+		}
+
+    	document.onkeydown = function(e){
+			console.log(e);
+			if(walkValue == 1){
+				walkValue = 2;
+			} else if(walkValue == 2){
+				walkValue = 1;
+			}
+    		if(e.keyCode == 37) { // LEFT
+				leftValue = leftValue - 10;
+				position = "left";
+    		} else if (e.keyCode == 39) { // RIGHT
+				leftValue = leftValue + 10;
+				position = "right";
+    		} else if (e.keyCode == 40) { // DOWN
+				topValue = topValue + 10;
+				position = "down";
+    		} else if (e.keyCode == 38) { // UP
+				topValue = topValue - 10;
+				position = "top";
+			}
+			animate(walkValue, position);
+			update();
+    	}
+    </script>
+</body>
+</html>
